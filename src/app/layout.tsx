@@ -41,6 +41,7 @@ export default function RootLayout({
         {children}
         <section className="w-full bg-[#b6deee] min-h-10">
         </section>
+        <SpeedInsights />
         <Footer />
       </body>
     </html>
