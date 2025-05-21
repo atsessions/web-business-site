@@ -23,7 +23,7 @@ export default function SitePreviewMicrolink({
     <section className="w-full flex flex-col items-center py-0 sm:py-16 px-4 bg-white">
       <div className="flex flex-col md:flex-row items-center gap-12 w-full max-w-7xl mx-auto">
         {/* Text Content */}
-        <div className="flex-1 min-w-[250px] max-w-xl">
+        <div className="flex-1 min-w-[250px] max-w-xl px-2">
           <h2 className="text-neutral-800 text-4xl font-bold mb-4">{title}</h2>
           <p className="text-neutral-700 text-lg mb-8">{description}</p>
           <Link

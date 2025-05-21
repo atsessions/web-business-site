@@ -70,7 +70,7 @@ export default function BehindTheScenes() {
   return (
     <section className="w-full bg-gradient-to-b from-[#b6deee] to-white py-0 sm:py-20 overflow-x-hidden">
       <div className="max-w-6xl mx-auto w-full px-2 sm:px-4 grid md:grid-cols-2 gap-8 items-center min-w-0">
-        <div className="min-w-0">
+        <div className="min-w-0 px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 mb-4">
             Behind the Scenes
           </h2>
