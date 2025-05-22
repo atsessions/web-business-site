@@ -1,10 +1,12 @@
+// page.tsx
+import Image from 'next/image'; // <--- Added this import
 import Marquee from "react-fast-marquee";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import BehindTheScenes from "@/components/BehindTheScenes";
 import HowItWorks from "@/components/HowItWorks";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
-import SitePreview from "@/components/SitePreview";
+import SitePreview from "@/components/SitePreview"; // You had this import, kept it.
 import SitePreviewMicrolink from "@/components/SitePreviewMicrolink";
 
 export default function Home() {
@@ -13,20 +15,28 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-10 sm:py-20 pb-26 sm:pb-40 grid md:grid-cols-2 items-center gap-12">
         {/* Image: top on mobile (order-1), right on desktop (md:order-2) */}
         <div className="order-1 md:order-2 w-full max-w-lg sm:max-w-xl md:max-w-2xl aspect-[5/4] relative">
+          {/* This div will now act as the mask container and relative positioning context */}
           <div
-            className="absolute inset-0 bg-cover bg-center shadow-xl"
+            className="absolute inset-0 shadow-xl overflow-hidden" // Added overflow-hidden
             style={{
               WebkitMaskImage: 'url(/blob-mask.svg)',
               WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskSize: '120% 120%',
+              WebkitMaskSize: '120% 120%', // You might need to adjust these
               WebkitMaskPosition: 'center 40%',
               maskImage: 'url(/blob-mask.svg)',
               maskRepeat: 'no-repeat',
-              maskSize: '150% 150%',
+              maskSize: '150% 150%', // You might need to adjust these
               maskPosition: 'center 40%',
-              backgroundImage: 'url(/hero.jpg)',
             }}
-          />
+          >
+            <Image
+              src="/hero.jpg" // Ensure hero.jpg is in your /public folder
+              alt="Hero image for Page, AZ website management services" // <<< --- CONSIDER UPDATING THIS ALT TEXT to be more specific
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </div>
         </div>
 
         {/* Text: below image on mobile (order-2), left on desktop (md:order-1) */}
