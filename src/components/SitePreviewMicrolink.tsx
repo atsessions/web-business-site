@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 
+
 interface SitePreviewMicrolinkProps {
   title: string;
   description: string;
@@ -20,7 +21,7 @@ export default function SitePreviewMicrolink({
   )}&screenshot=true&meta=false&embed=screenshot.url`;
 
   return (
-    <section className="w-full flex flex-col items-center py-0 sm:py-16 px-4 bg-white">
+    <section className="w-full flex flex-col items-center py-4 sm:py-16 px-4 bg-white">
       <div className="flex flex-col md:flex-row items-center gap-12 w-full max-w-7xl mx-auto">
         {/* Text Content */}
         <div className="flex-1 min-w-[250px] max-w-xl px-2">

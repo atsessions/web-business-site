@@ -35,7 +35,7 @@ export default function Home() {
             Website management <br /> for modern businesses.
           </h1>
           <p className="text-lg text-gray-600 mb-8 max-w-lg">
-            Expert website management that melds cutting-edge design with user-friendly features, ensuring your small business stands out.
+            Tap into the power of a stunning, effective website without the headache. [Placeholder Business Name] specializes in helping Page businesses connect with a global audience and achieve local success.
           </p>
           <div className="flex gap-4">
             <a
@@ -107,8 +107,8 @@ export default function Home() {
       <BehindTheScenes />
       <HowItWorks />
       <SitePreviewMicrolink
-        title="Red Heritage"
-        description="A cultural events website built for Red Heritage, using WordPress."
+        title="See My Work in Action"
+        description="Explore a selection of websites I've built and managed, showcasing a commitment to quality design, performance, and user experience."
         siteUrl="https://red-heritage.com"
         portfolioUrl="/portfolio" // Optional, defaults to "/portfolio"
       />

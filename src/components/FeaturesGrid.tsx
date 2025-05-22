@@ -23,10 +23,10 @@ const features = [
       "Advanced security features keep your site safe, your data protected, and your visitors confident.",
   },
   {
-    title: "Effortless Updates",
+    title: "Focus On Your Business, We'll Handle The Site",
     icon: <FaSyncAlt className="text-blue-500 group-hover:scale-110 group-hover:text-blue-700 transition-all duration-300" size={32} />,
     description:
-      "Never worry about stale content. Easily update your site or let us handle it for you with a hands-off approach.",
+      "Spend your valuable time running your business. Our comprehensive management service handles all updates, content changes, and maintenance, so you don't have to.",
   },
 ];
 
