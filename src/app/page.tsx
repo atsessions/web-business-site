@@ -11,8 +11,26 @@ export default function Home() {
   return (
     <main className="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
       <section className="max-w-7xl mx-auto px-6 py-10 sm:py-20 pb-26 sm:pb-40 grid md:grid-cols-2 items-center gap-12">
-        {/* Left: Text content */}
-        <div>
+        {/* Image: top on mobile (order-1), right on desktop (md:order-2) */}
+        <div className="order-1 md:order-2 w-full max-w-lg sm:max-w-xl md:max-w-2xl aspect-[5/4] relative">
+          <div
+            className="absolute inset-0 bg-cover bg-center shadow-xl"
+            style={{
+              WebkitMaskImage: 'url(/blob-mask.svg)',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskSize: '120% 120%',
+              WebkitMaskPosition: 'center 40%',
+              maskImage: 'url(/blob-mask.svg)',
+              maskRepeat: 'no-repeat',
+              maskSize: '150% 150%',
+              maskPosition: 'center 40%',
+              backgroundImage: 'url(/hero.jpg)',
+            }}
+          />
+        </div>
+
+        {/* Text: below image on mobile (order-2), left on desktop (md:order-1) */}
+        <div className="order-2 md:order-1">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-neutral-800 mb-6">
             Website management <br /> for modern businesses.
           </h1>
@@ -34,24 +52,8 @@ export default function Home() {
             </a>
           </div>
         </div>
-        {/* Right: Image */}
-        <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl aspect-[5/4] relative">
-          <div
-            className="absolute inset-0 bg-cover bg-center shadow-xl"
-            style={{
-              WebkitMaskImage: 'url(/blob-mask.svg)',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskSize: '120% 120%', // make the blob larger than the container!
-              WebkitMaskPosition: 'center 40%',
-              maskImage: 'url(/blob-mask.svg)',
-              maskRepeat: 'no-repeat',
-              maskSize: '150% 150%',
-              maskPosition: 'center 40%',
-              backgroundImage: 'url(/hero.jpg)',
-            }}
-          ></div>
-        </div>
       </section>
+
       {/* Gray Divider Bar */}
       <div className="w-full h-20 bg-[#d9dbe1] relative z-10"></div>
 
