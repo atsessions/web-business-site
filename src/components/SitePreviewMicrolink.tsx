@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react"; // Added useState
 import Link from "next/link";
-
 
 interface SitePreviewMicrolinkProps {
   title: string;
@@ -16,9 +15,22 @@ export default function SitePreviewMicrolink({
   siteUrl,
   portfolioUrl = "/portfolio",
 }: SitePreviewMicrolinkProps) {
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+
   const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(
     siteUrl
   )}&screenshot=true&meta=false&embed=screenshot.url`;
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+    setImageError(false);
+  };
+
+  const handleImageError = () => {
+    setImageLoading(false);
+    setImageError(true);
+  };
 
   return (
     <section className="w-full flex flex-col items-center py-4 sm:py-16 px-4 bg-white">
@@ -58,12 +70,25 @@ export default function SitePreviewMicrolink({
               </div>
             </div>
             {/* Screenshot */}
-            <div className="flex-1 relative">
+            <div className="flex-1 relative bg-gray-200"> {/* Added bg-gray-200 */}
+              {imageLoading && (
+                <div className="absolute inset-0 flex items-center justify-center text-gray-500 animate-pulse">
+                  Loading preview...
+                </div>
+              )}
+              {imageError && !imageLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-red-600 p-4 text-center">
+                  <p>Preview unavailable for:</p>
+                  <p className="text-xs mt-1">{siteUrl.replace(/^https?:\/\//, "")}</p>
+                </div>
+              )}
               <img
                 src={screenshotUrl}
                 alt={`Screenshot of ${title}`}
-                className="object-cover w-full h-full"
+                className={`object-cover w-full h-full ${imageLoading || imageError ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
                 draggable={false}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
               />
             </div>
           </div>
