@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Bars3Icon, XMarkIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Navbar links
@@ -19,54 +19,71 @@ export default function Navbar() {
 
   return (
       <nav
-        className="sticky top-0 z-50 bg-gray-100/95 backdrop-blur-md"
+        className="sticky top-0 z-50 backdrop-blur-lg"
         style={{
-          boxShadow: "0 8px 32px 0 rgba(34,56,112,0.07)",
-          borderBottom: "1.5px solid #e2e8f0",
-          background: undefined, // <--- ensure nothing overrides Tailwind!
+          background: "linear-gradient(135deg, #8BA9B5 0%, #7A9AA6 50%, #9B7A63 100%)",
+          boxShadow: "0 8px 32px 0 rgba(0,0,0,0.15)",
         }}
       >
-      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo + Brand */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-2xl text-gray-800 tracking-tight">
-          {/* Optional fun icon */}
-          <SparklesIcon className="h-7 w-7 text-[#668B96] animate-spin-slow" />
-          Website Management
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 font-bold text-white tracking-tight group">
+          {/* Cactus logo */}
+          <motion.div
+            className="relative"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <img src="/cactus-logo.svg" alt="Desert Web Development Logo" className="h-10 w-10 text-white drop-shadow-lg" />
+          </motion.div>
+          <span className="text-lg sm:text-2xl drop-shadow-md text-left">
+            Desert Web Development
+          </span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex relative space-x-8">
-          {navLinks.map((link, i) => {
+        <div className="hidden md:flex relative space-x-1 bg-black/20 backdrop-blur-sm rounded-full p-1">
+          {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
-              <div key={link.href} className="relative">
-                <Link
-                  href={link.href}
-                  className={`font-medium px-2 py-1 transition group
+              <Link
+                key={link.href}
+                href={link.href}
+                className="relative"
+              >
+                <motion.div
+                  className={`font-semibold px-5 py-2 rounded-full relative z-10
                     ${isActive
                       ? "text-[#668B96]"
-                      : "text-gray-700 hover:text-[#668B96]"}
+                      : "text-white/90 hover:text-white"}
                   `}
-                  style={{ position: "relative" }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {link.label}
-                  {/* Animated indicator */}
+                  {/* Sliding background pill */}
                   {isActive && (
                     <motion.div
-                      layoutId="nav-underline"
-                      className="absolute left-0 right-0 -bottom-1 h-1 rounded-full bg-[#668B96] z-10"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      layoutId="active-pill"
+                      className="absolute inset-0 bg-white shadow-lg rounded-full"
+                      style={{ zIndex: -1 }}
+                      transition={{
+                        type: "tween",
+                        duration: 0.4,
+                        ease: "easeInOut",
+                        layout: { duration: 0.4 }
+                      }}
                     />
                   )}
-                </Link>
-              </div>
+                  {link.label}
+                </motion.div>
+              </Link>
             );
           })}
         </div>
         {/* Mobile Hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 rounded focus-visible:ring-2 focus-visible:ring-[#668B96]"
+          className="md:hidden p-2 focus:outline-none"
           aria-label="Toggle menu"
         >
           <motion.div
@@ -74,9 +91,9 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
           >
             {menuOpen ? (
-              <XMarkIcon className="h-6 w-6 text-gray-800" />
+              <XMarkIcon className="h-6 w-6 text-white" />
             ) : (
-              <Bars3Icon className="h-6 w-6 text-gray-800" />
+              <Bars3Icon className="h-6 w-6 text-white" />
             )}
           </motion.div>
         </button>
@@ -86,25 +103,31 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute top-full left-0 right-0 md:hidden px-4 pb-6 pt-4 space-y-4 bg-white/95 shadow rounded-b-xl z-40 backdrop-blur"
+            className="md:hidden px-6 pb-6 pt-4 space-y-2 bg-gradient-to-b from-[#7A9AA6] to-[#9B7A63] border-t border-white/10"
           >
-            {navLinks.map((link) => (
-              <Link
+            {navLinks.map((link, i) => (
+              <motion.div
                 key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`block font-medium transition text-lg ${
-                  pathname === link.href
-                    ? "text-[#668B96]"
-                    : "text-gray-700 hover:text-[#668B96]"
-                }`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`block font-semibold transition-all text-lg px-4 py-3 rounded-lg ${
+                    pathname === link.href
+                      ? "text-[#668B96] bg-white shadow-md"
+                      : "text-white/90 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         )}

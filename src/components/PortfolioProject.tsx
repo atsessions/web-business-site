@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react"; // Added useState
+import React from "react";
 
 interface PortfolioProjectProps {
   title: string;
   description: string;
   siteUrl: string;
   imageSide?: "left" | "right";
+  screenshotPath: string; // Local screenshot path (required)
 }
 
 export default function PortfolioProject({
@@ -13,25 +14,9 @@ export default function PortfolioProject({
   description,
   siteUrl,
   imageSide = "right",
+  screenshotPath,
 }: PortfolioProjectProps) {
-  const [imageLoading, setImageLoading] = useState(true);
-  const [imageError, setImageError] = useState(false);
-
-  const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(
-    siteUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url`;
-
   const isImageLeft = imageSide === "left";
-
-  const handleImageLoad = () => {
-    setImageLoading(false);
-    setImageError(false);
-  };
-
-  const handleImageError = () => {
-    setImageLoading(false);
-    setImageError(true);
-  };
 
   return (
     <section className="w-full flex flex-col md:flex-row items-center gap-8 md:gap-16 my-10">
@@ -42,12 +27,12 @@ export default function PortfolioProject({
             rounded-2xl shadow-2xl border bg-neutral-100 overflow-hidden
             w-[95vw] max-w-full
             h-[56vw] max-h-[60vw]
-            sm:h-[46vw] sm:max-h-[400px]
-            md:w-[750px] md:h-[500px] md:max-w-[750px] md:max-h-[500px]
+            sm:h-[46vw] sm:max-h-[450px]
+            md:w-[900px] md:h-[506px] md:max-w-[900px] md:max-h-[506px]
             transition-all
             flex flex-col
           "
-          style={{ aspectRatio: "3/2" }}
+          style={{ aspectRatio: "16/9" }}
         >
           {/* Browser Bar */}
           <div className="flex items-center h-10 px-4 bg-gray-100 border-b border-gray-200">
@@ -59,25 +44,12 @@ export default function PortfolioProject({
             </div>
           </div>
           {/* Screenshot */}
-          <div className="flex-1 relative bg-gray-200"> {/* Added bg-gray-200 */}
-            {imageLoading && (
-              <div className="absolute inset-0 flex items-center justify-center text-gray-500 animate-pulse">
-                Loading preview...
-              </div>
-            )}
-            {imageError && !imageLoading && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-red-600 p-4 text-center">
-                <p>Preview unavailable for:</p>
-                <p className="text-xs mt-1">{siteUrl.replace(/^https?:\/\//, "")}</p>
-              </div>
-            )}
+          <div className="flex-1 relative bg-gray-200">
             <img
-              src={screenshotUrl}
+              src={screenshotPath}
               alt={`Screenshot of ${title}`}
-              className={`object-cover w-full h-full ${imageLoading || imageError ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+              className="object-cover w-full h-full"
               draggable={false}
-              onLoad={handleImageLoad}
-              onError={handleImageError}
             />
           </div>
         </div>

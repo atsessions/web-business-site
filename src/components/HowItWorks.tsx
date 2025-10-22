@@ -63,7 +63,7 @@ export default function HowItWorks() {
   }
 
   return (
-    <section className="relative py-16 md:py-24 bg-[#ffffff] overflow-hidden">
+    <section className="relative py-16 md:py-24 pb-24 md:pb-32 bg-[#ffffff] overflow-hidden">
       <div className="max-w-6xl mx-auto px-2 sm:px-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-neutral-800 mb-4">
           How It Works

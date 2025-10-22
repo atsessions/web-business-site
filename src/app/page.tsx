@@ -45,7 +45,7 @@ export default function Home() {
             Website management <br /> for modern businesses.
           </h1>
           <p className="text-lg text-gray-600 mb-8 max-w-lg">
-            Tap into the power of a stunning, effective website without the headache. [Placeholder Business Name] specializes in helping Page businesses connect with a global audience and achieve local success.
+            Tap into the power of a stunning, effective website without the headache. Desert Web Development specializes in helping Page businesses connect with a global audience and achieve local success.
           </p>
           <div className="flex gap-4">
             <a

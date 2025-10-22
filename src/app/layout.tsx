@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 
 // 2) Your site metadata (optional but recommended)
 export const metadata: Metadata = {
-  title: "Your Business Name",
-  description: "Professional web management & design",
+  title: "Desert Web Development",
+  description: "Professional web development and management services in Page, Arizona. Building and maintaining high-quality websites for businesses, government, and organizations.",
 }
 
 import Navbar from "../components/Navbar"  // <-- make sure path is correct
@@ -37,8 +37,11 @@ export default function RootLayout({
         {/* 3) Navbar goes inside <body> */}
         <Navbar />
 
-        {/* 4) All your pages */}
-        {children}
+        {/* 4) All your pages - flex-1 makes it grow to fill space */}
+        <div className="flex-1 flex flex-col">
+          {children}
+        </div>
+
         <section className="w-full bg-[#b6deee] min-h-10">
         </section>
         <SpeedInsights />

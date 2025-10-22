@@ -7,8 +7,8 @@ export default function ContactPage() {
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  // Simple honeypot: a hidden input that real users won’t fill out
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // Simple honeypot: a hidden input that real users won't fill out
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
 
@@ -21,22 +21,101 @@ export default function ContactPage() {
       return;
     }
 
-    // Simulate sending (replace with your API later)
+    // Send form data to API
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          message: data.get('message'),
+          company: data.get('company'),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
       setSent(true);
       form.reset();
-    }, 1000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <main className="flex-1 flex flex-col items-center justify-center px-4 py-20 bg-white">
-      <div className="w-full max-w-xl rounded-3xl shadow-2xl bg-neutral-50 p-10 flex flex-col gap-6">
-        <h1 className="text-3xl font-bold text-neutral-800 mb-2 text-center">Get in Touch</h1>
-        <p className="text-neutral-600 text-center mb-6">
-          Let’s work together or just say hi! Fill out the form and I’ll get back to you soon.
+    <main className="flex-1 flex flex-col items-center justify-start px-4 py-12 bg-white">
+      {/* Header Section */}
+      <div className="w-full max-w-4xl mx-auto mb-12 text-center">
+        <h1 className="text-4xl font-bold text-neutral-800 mb-4 mt-4 md:mt-10">Let's Work Together</h1>
+        <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Have a project in mind? Whether you need a new website, maintenance for an existing site, or web development consultation, I'd love to hear from you.
         </p>
+      </div>
+
+      {/* Main Content Area with Two Columns */}
+      <div className="w-full max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-start">
+        {/* Left Column: Contact Info */}
+        <div className="flex flex-col gap-6">
+          <div className="bg-gradient-to-br from-[#668B96] to-[#557A84] rounded-2xl p-8 text-white shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
+            <div className="flex flex-col gap-4">
+              <div>
+                <h3 className="font-semibold mb-1">Email</h3>
+                <a href="mailto:alex.t.sessions@gmail.com" className="hover:underline">
+                  alex.t.sessions@gmail.com
+                </a>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1">Location</h3>
+                <p>Page, Arizona</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1">Response Time</h3>
+                <p>I typically respond within 24-48 hours</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-neutral-100 rounded-2xl p-8 shadow-md border border-neutral-200">
+            <h2 className="text-xl font-bold text-neutral-800 mb-3">Services Offered</h2>
+            <ul className="space-y-2 text-neutral-700">
+              <li className="flex items-start">
+                <span className="text-[#668B96] mr-2">•</span>
+                <span>Custom Website Development</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#668B96] mr-2">•</span>
+                <span>Website Maintenance & Updates</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#668B96] mr-2">•</span>
+                <span>Municipal & Government Websites</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#668B96] mr-2">•</span>
+                <span>Performance Optimization</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#668B96] mr-2">•</span>
+                <span>Web Consulting</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Right Column: Contact Form */}
+        <div className="w-full rounded-2xl shadow-lg bg-white border-2 border-neutral-200 p-8 flex flex-col gap-6">
+          <h2 className="text-2xl font-bold text-neutral-800 text-center">Send a Message</h2>
 
         {!sent ? (
           <form className="flex flex-col gap-5" onSubmit={handleSubmit} autoComplete="off">
@@ -99,9 +178,6 @@ export default function ContactPage() {
             </button>
           </div>
         )}
-
-        <div className="mt-6 text-center text-neutral-500 text-sm">
-          Or email me directly: <a href="mailto:your@email.com" className="underline hover:text-[#668B96]">your@email.com</a>
         </div>
       </div>
     </main>
