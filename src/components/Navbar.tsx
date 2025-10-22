@@ -49,33 +49,13 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative"
+                className={`font-semibold px-5 py-2 rounded-full relative transition-all duration-200
+                  ${isActive
+                    ? "text-[#668B96] bg-white shadow-lg"
+                    : "text-white/90 hover:text-white hover:bg-white/10"}
+                `}
               >
-                <motion.div
-                  className={`font-semibold px-5 py-2 rounded-full relative z-10
-                    ${isActive
-                      ? "text-[#668B96]"
-                      : "text-white/90 hover:text-white"}
-                  `}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {/* Sliding background pill */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-pill"
-                      className="absolute inset-0 bg-white shadow-lg rounded-full"
-                      style={{ zIndex: -1 }}
-                      transition={{
-                        type: "tween",
-                        duration: 0.4,
-                        ease: "easeInOut",
-                        layout: { duration: 0.4 }
-                      }}
-                    />
-                  )}
-                  {link.label}
-                </motion.div>
+                {link.label}
               </Link>
             );
           })}
