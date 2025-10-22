@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Desert Web Development",
   description: "Professional web development and management services in Page, Arizona. Building and maintaining high-quality websites for businesses, government, and organizations.",
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 import Navbar from "../components/Navbar"  // <-- make sure path is correct
