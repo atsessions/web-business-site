@@ -4,31 +4,30 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const steps = [
-  // ... your steps data remains the same
   {
-    title: "Consult & Assess",
+    title: "Discovery Call",
     description:
-      "Tell me your goals. Whether you need a fresh start or a new platform, we’ll discuss features, design, and what matters most to you.",
+      "We discuss your goals, target audience, and required features. I'll ask about your timeline, budget, and any existing content or branding.",
   },
   {
-    title: "Transparent Quote",
+    title: "Proposal & Quote",
     description:
-      "Once I understand your vision, I’ll provide a clear quote—no surprises.",
+      "You'll receive a detailed proposal outlining scope, timeline, and cost. We can adjust based on your priorities and budget.",
   },
   {
-    title: "Content & Planning",
+    title: "Design & Planning",
     description:
-      "You send any logos, content, and special requests. Together, we plan the perfect site structure.",
+      "I'll create a sitemap and design mockups based on your brand. You provide feedback and we finalize the structure before development begins.",
   },
   {
-    title: "Build & Collaborate",
+    title: "Development",
     description:
-      "I develop your website, keeping you updated as we go. We refine it together until you love it.",
+      "I build your site using modern frameworks and best practices. You'll get regular updates and access to a staging site to review progress.",
   },
   {
-    title: "Launch, Analytics & Growth",
+    title: "Launch & Support",
     description:
-      "We launch! I set up analytics and SEO to help your site shine and attract new visitors.",
+      "After final testing and your approval, we go live. I'll configure analytics, set up hosting, and provide documentation for managing your site.",
   },
 ];
 
@@ -63,74 +62,80 @@ export default function HowItWorks() {
   }
 
   return (
-    <section className="relative py-16 md:py-24 pb-24 md:pb-32 bg-[#ffffff] overflow-hidden">
+    <section className="relative py-16 md:py-24 pb-24 md:pb-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-2 sm:px-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-neutral-800 mb-4">
           How It Works
         </h2>
         <p className="text-center text-base sm:text-lg md:text-xl text-neutral-700 mb-16 sm:mb-20 max-w-2xl mx-auto">
-          My process is clear, collaborative, and tailored to your needs. Here’s
-          what working with me looks like:
+          A straightforward process from initial consultation to launch.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-y-16 gap-x-8 sm:gap-x-10 justify-items-center">
-          {steps.map((step, i) => {
-            const desktopAnimation = {
-              initial: { opacity: 0, y: 50 },
-              whileInView: { opacity: 1, y: 0 },
-              transition: {
-                delay: i * 0.2,
-                duration: 0.6,
-                ease: [0.47, 1.64, 0.41, 0.8],
-              }
-            };
+        <div className="relative">
+          {/* Connecting line for desktop */}
+          <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#668B96]/30 to-transparent" style={{ top: '2rem' }} />
 
-            const mobileAnimation = {
-              initial: { opacity: 0 }, // Just fade-in
-              whileInView: { opacity: 1 },
-              transition: { // You can adjust duration/delay for mobile if needed
-                delay: i * 0.1, // Faster delay for mobile if items stack
-                duration: 0.5,
-                ease: "easeInOut",
-              }
-            };
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-y-12 gap-x-4 lg:gap-x-6 justify-items-center">
+            {steps.map((step, i) => {
+              const desktopAnimation = {
+                initial: { opacity: 0, y: 50 },
+                whileInView: { opacity: 1, y: 0 },
+                transition: {
+                  delay: i * 0.15,
+                  duration: 0.5,
+                  ease: "easeOut",
+                }
+              };
 
-            const animationProps = isMobile ? mobileAnimation : desktopAnimation;
+              const mobileAnimation = {
+                initial: { opacity: 0, x: -20 },
+                whileInView: { opacity: 1, x: 0 },
+                transition: {
+                  delay: i * 0.1,
+                  duration: 0.4,
+                  ease: "easeOut",
+                }
+              };
 
-            return (
-              <motion.div
-                key={i}
-                initial={animationProps.initial}
-                whileInView={animationProps.whileInView}
-                transition={animationProps.transition}
-                viewport={{ once: true, amount: 0.3 }} // Keep viewport settings
-                className="w-full max-w-[16rem] md:max-w-sm min-h-[15rem] cursor-pointer transform transition-transform duration-200 ease-out hover:scale-105 flex flex-col items-center bg-gradient-to-br from-[#F2E6DD] via-white to-[#E2E8F0] shadow-[0_8px_32px_0_rgba(106,67,39,0.25)] px-5 py-10 sm:px-7 sm:py-12 rounded-2xl sm:rounded-3xl relative group"
-              >
-                {/* ... rest of your card content (number, line, title, description) ... */}
-                <div
-                  className="absolute -top-8 left-1/2 -translate-x-1/2 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full text-white text-2xl sm:text-3xl font-bold shadow-lg border-4 border-white group-hover:scale-110 transition-transform cursor-pointer"
-                  style={{
-                    background: turquoise,
-                    boxShadow:
-                      "0 0 0 8px #F2E6DD, 0 6px 32px 0 rgba(102, 139, 150, 0.13)",
-                    filter: "drop-shadow(0 0 12px #668B96cc)",
-                  }}
+              const animationProps = isMobile ? mobileAnimation : desktopAnimation;
+
+              return (
+                <motion.div
+                  key={i}
+                  initial={animationProps.initial}
+                  whileInView={animationProps.whileInView}
+                  transition={animationProps.transition}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="w-full max-w-[18rem] md:max-w-none flex flex-col items-center relative group"
                 >
-                  {i + 1}
-                </div>
-                <div
-                  className="h-1 w-30 sm:w-30 rounded-full mb-4 mt-4 sm:mt-4"
-                  style={{ background: turquoise, opacity: 0.9 }}
-                />
-                <div className="font-semibold text-neutral-900 text-base sm:text-lg mb-2 text-center">
-                  {step.title}
-                </div>
-                <div className="text-neutral-700 text-sm text-center">
-                  {step.description}
-                </div>
-              </motion.div>
-            );
-          })}
+                  {/* Number circle */}
+                  <div
+                    className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-all duration-300 mb-6"
+                    style={{
+                      background: `linear-gradient(135deg, ${turquoise} 0%, #7A9AA6 100%)`,
+                    }}
+                  >
+                    {i + 1}
+                  </div>
+
+                  {/* Card */}
+                  <div className="w-full bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group-hover:border-[#668B96]/30">
+                    <h3 className="font-bold text-neutral-900 text-lg mb-3 text-center">
+                      {step.title}
+                    </h3>
+                    <p className="text-neutral-600 text-sm leading-relaxed text-center">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {/* Arrow for mobile */}
+                  {i < steps.length - 1 && (
+                    <div className="md:hidden w-0.5 h-8 bg-gradient-to-b from-[#668B96]/50 to-transparent mt-6" />
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
