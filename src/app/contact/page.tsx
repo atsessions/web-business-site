@@ -1,6 +1,7 @@
 // src/app/contact/page.tsx
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
   const [sent, setSent] = React.useState(false);
@@ -53,131 +54,184 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="flex-1 flex flex-col items-center justify-start px-4 py-12 bg-white">
-      {/* Header Section */}
-      <div className="w-full max-w-4xl mx-auto mb-12 text-center">
-        <h1 className="text-4xl font-bold text-neutral-800 mb-4 mt-4 md:mt-10">Let's Work Together</h1>
-        <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Have a project in mind? Whether you need a new website, maintenance for an existing site, or web development consultation, I'd love to hear from you.
-        </p>
-      </div>
-
-      {/* Main Content Area with Two Columns */}
-      <div className="w-full max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-start">
-        {/* Left Column: Contact Info */}
-        <div className="flex flex-col gap-6">
-          <div className="bg-gradient-to-br from-[#668B96] to-[#557A84] rounded-2xl p-8 text-white shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
-            <div className="flex flex-col gap-4">
-              <div>
-                <h3 className="font-semibold mb-1">Email</h3>
-                <a href="mailto:alex.t.sessions@gmail.com" className="hover:underline">
-                  alex.t.sessions@gmail.com
-                </a>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1">Location</h3>
-                <p>Page, Arizona</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1">Response Time</h3>
-                <p>I typically respond within 24-48 hours</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-neutral-100 rounded-2xl p-8 shadow-md border border-neutral-200">
-            <h2 className="text-xl font-bold text-neutral-800 mb-3">Services Offered</h2>
-            <ul className="space-y-2 text-neutral-700">
-              <li className="flex items-start">
-                <span className="text-[#668B96] mr-2">•</span>
-                <span>Custom Website Development</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#668B96] mr-2">•</span>
-                <span>Website Maintenance & Updates</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#668B96] mr-2">•</span>
-                <span>Municipal & Government Websites</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#668B96] mr-2">•</span>
-                <span>Performance Optimization</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#668B96] mr-2">•</span>
-                <span>Web Consulting</span>
-              </li>
-            </ul>
-          </div>
+    <main className="min-h-screen bg-white">
+      <div className="w-full max-w-5xl mx-auto px-6">
+        {/* Header Section */}
+        <div className="py-20 md:py-32 text-center">
+          <motion.h1
+            className="text-5xl md:text-6xl font-light text-black mb-8 tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            Let's Work Together
+          </motion.h1>
+          <motion.p
+            className="text-[#737373] text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            Have a project in mind? Whether you need a new website, maintenance for an existing site, or web development consultation, I'd love to hear from you.
+          </motion.p>
         </div>
 
-        {/* Right Column: Contact Form */}
-        <div className="w-full rounded-2xl shadow-lg bg-white border-2 border-neutral-200 p-8 flex flex-col gap-6">
-          <h2 className="text-2xl font-bold text-neutral-800 text-center">Send a Message</h2>
-
-        {!sent ? (
-          <form className="flex flex-col gap-5" onSubmit={handleSubmit} autoComplete="off">
-            {/* Honeypot Field (hidden from humans) */}
-            <div style={{ display: "none" }}>
-              <label>
-                Company (leave blank):
-                <input
-                  type="text"
-                  name="company"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-              </label>
+        {/* Main Content Area */}
+        <div className="pb-20 grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          {/* Left Column: Contact Info */}
+          <motion.div
+            className="flex flex-col gap-12 max-w-md"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          >
+            {/* Contact Information */}
+            <div>
+              <h2 className="text-2xl md:text-3xl font-light text-black mb-8 tracking-tight">Contact Information</h2>
+              <div className="flex flex-col gap-6">
+                <div className="border-l-2 border-black pl-6 pr-4 transition-colors duration-300 hover:border-[#666666]">
+                  <h3 className="text-sm font-light text-[#737373] uppercase tracking-wider mb-2">Email</h3>
+                  <a
+                    href="mailto:alex.t.sessions@gmail.com"
+                    className="text-black font-light text-base transition-colors duration-300 hover:text-[#666666]"
+                  >
+                    alex.t.sessions@gmail.com
+                  </a>
+                </div>
+                <div className="border-l-2 border-black pl-6 pr-4 transition-colors duration-300 hover:border-[#666666]">
+                  <h3 className="text-sm font-light text-[#737373] uppercase tracking-wider mb-2">Location</h3>
+                  <p className="text-black font-light text-base">Page, Arizona</p>
+                </div>
+                <div className="border-l-2 border-black pl-6 pr-4 transition-colors duration-300 hover:border-[#666666]">
+                  <h3 className="text-sm font-light text-[#737373] uppercase tracking-wider mb-2">Response Time</h3>
+                  <p className="text-black font-light text-base">Typically within 24-48 hours</p>
+                </div>
+              </div>
             </div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              className="rounded-lg border px-4 py-3 text-base text-neutral-600 outline-none border-neutral-300 focus:border-[#668B96] bg-white"
-              required
-              disabled={submitting}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              className="rounded-lg border px-4 py-3 text-base text-neutral-600 outline-none border-neutral-300 focus:border-[#668B96] bg-white"
-              required
-              disabled={submitting}
-            />
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              rows={5}
-              className="rounded-lg border px-4 py-3 text-base text-neutral-600 outline-none border-neutral-300 focus:border-[#668B96] bg-white resize-none"
-              required
-              disabled={submitting}
-            />
-            <button
-              type="submit"
-              className="mt-2 rounded-xl bg-[#668B96] text-white font-semibold px-8 py-3 text-lg shadow-md hover:bg-[#6A4327] hover:text-white transition-colors duration-200 disabled:opacity-50"
-              disabled={submitting}
-            >
-              {submitting ? "Sending..." : "Send Message"}
-            </button>
-            {error && (
-              <div className="text-red-600 text-center text-sm mt-2">{error}</div>
+
+            {/* Services Offered */}
+            <div>
+              <h2 className="text-2xl md:text-3xl font-light text-black mb-8 tracking-tight">Services Offered</h2>
+              <ul className="space-y-4">
+                {[
+                  "Custom Website Development",
+                  "Website Maintenance & Updates",
+                  "Municipal & Government Websites",
+                  "Performance Optimization",
+                  "Web Consulting"
+                ].map((service, index) => (
+                  <motion.li
+                    key={service}
+                    className="flex items-start gap-4 text-base group"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1, ease: "easeOut" }}
+                  >
+                    <span className="mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0 transition-transform duration-300 group-hover:scale-150" />
+                    <span className="text-[#404040] font-light leading-relaxed transition-colors duration-300 group-hover:text-black">
+                      {service}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Contact Form */}
+          <motion.div
+            className="border border-[#e5e5e5] bg-white p-8 md:p-10"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          >
+            <h2 className="text-2xl md:text-3xl font-light text-black mb-8 tracking-tight">Send a Message</h2>
+
+            {!sent ? (
+              <form className="flex flex-col gap-6" onSubmit={handleSubmit} autoComplete="off">
+                {/* Honeypot Field (hidden from humans) */}
+                <div style={{ display: "none" }}>
+                  <label>
+                    Company (leave blank):
+                    <input
+                      type="text"
+                      name="company"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </label>
+                </div>
+
+                <div>
+                  <label htmlFor="name" className="block text-sm font-light text-[#737373] uppercase tracking-wider mb-3">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full border border-[#e5e5e5] px-4 py-3 text-base text-black font-light outline-none transition-colors duration-300 focus:border-black bg-white"
+                    required
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-light text-[#737373] uppercase tracking-wider mb-3">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full border border-[#e5e5e5] px-4 py-3 text-base text-black font-light outline-none transition-colors duration-300 focus:border-black bg-white"
+                    required
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-light text-[#737373] uppercase tracking-wider mb-3">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={6}
+                    className="w-full border border-[#e5e5e5] px-4 py-3 text-base text-black font-light outline-none transition-colors duration-300 focus:border-black bg-white resize-none"
+                    required
+                    disabled={submitting}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="group inline-block border-2 border-black text-black font-light px-10 py-4 text-base hover:bg-black hover:text-white transition-all duration-300 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={submitting}
+                >
+                  <span className="relative z-10">{submitting ? "Sending..." : "Send Message"}</span>
+                  <span className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </button>
+
+                {error && (
+                  <div className="text-black text-center text-sm border-l-2 border-black pl-4 py-2">{error}</div>
+                )}
+              </form>
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-6 py-12">
+                <div className="text-3xl md:text-4xl text-black font-light">Thank you!</div>
+                <div className="text-[#737373] text-center font-light leading-relaxed">
+                  Your message has been sent. I'll get back to you soon.
+                </div>
+                <button
+                  onClick={() => setSent(false)}
+                  className="mt-4 group inline-block border-2 border-black text-black font-light px-10 py-3 text-base hover:bg-black hover:text-white transition-all duration-300 relative overflow-hidden"
+                >
+                  <span className="relative z-10">Send Another</span>
+                  <span className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </button>
+              </div>
             )}
-          </form>
-        ) : (
-          <div className="flex flex-col items-center justify-center gap-4 py-12">
-            <div className="text-2xl text-[#668B96] font-bold">Thank you!</div>
-            <div className="text-neutral-700 text-center">Your message has been sent. I’ll get back to you soon.</div>
-            <button
-              onClick={() => setSent(false)}
-              className="mt-4 rounded-xl bg-[#668B96] text-white font-semibold px-8 py-2 text-base shadow-md hover:bg-[#6A4327] transition-colors duration-200"
-            >
-              Send Another
-            </button>
-          </div>
-        )}
+          </motion.div>
         </div>
       </div>
     </main>

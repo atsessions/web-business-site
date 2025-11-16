@@ -38,6 +38,36 @@
    - Smooth mobile menu (CSS transitions, no lag)
    - Cactus logo + business name
 
+4. **How It Works Section** (`/src/components/HowItWorks.tsx`)
+   - 5-step vertical timeline layout
+   - Minimalist numbered boxes with 1px borders
+   - Direct, professional copy explaining the process
+   - Clean spacing with focus on readability
+
+5. **Behind the Scenes Section** (`/src/components/BehindTheScenes.tsx`)
+   - Live typing animation showing JavaScript code in a minimal code editor
+   - Line numbers and syntax highlighting using prism-react-renderer
+   - 4 feature items with simple bullet points (no icons)
+   - Two-column layout: text content on left, code editor on right
+   - Minimal styling with 1px borders and light gray backgrounds
+
+6. **Features Grid** (`/src/components/FeaturesGrid.tsx`)
+   - 2-column grid layout with left border accents
+   - Simple text-based features (no icons)
+   - Light typography with generous spacing
+   - "What you get" heading
+
+7. **FAQ Section** (`/src/components/FAQSection.tsx`)
+   - Clean accordion with +/- indicators
+   - Simple borders between questions
+   - Rewritten copy to be more direct and professional
+   - Minimal animations
+
+8. **CTA Section** (`/src/components/CTASection.tsx`)
+   - Simple centered text and button
+   - Black border button with hover state (fills black background)
+   - Placed on light gray background for subtle contrast
+
 ## Important Notes
 - **Contact Form**: Requires `RESEND_API_KEY` environment variable in Vercel
 - **Portfolio Screenshots**: Use Puppeteer scripts to regenerate if needed
@@ -68,8 +98,17 @@
 - **Environment Variables**: Set in Vercel dashboard (RESEND_API_KEY)
 
 ## Design Philosophy
-- Professional yet approachable
-- Desert/Arizona theme with cactus branding
-- Focus on showcasing municipal/government website expertise
-- Clean, modern UI with smooth animations
-- Mobile-first responsive design
+- **Pure Minimalism**: Ultra-clean design emphasizing whitespace, simplicity, and essentials
+- **Monochrome Color Palette**:
+  - Primary: #000000 (black)
+  - Secondary: #404040 (dark gray)
+  - Accent: #666666 (medium gray)
+  - Background: #ffffff (white)
+  - Surface: #fafafa (off-white)
+  - Text: #000000 (black)
+  - Text Secondary: #737373 (gray)
+  - Border: #e5e5e5 (light gray)
+- **Typography**: Light font weights (300-400), generous line spacing, sans-serif, normal case
+- **UI Elements**: Ultra-thin borders (1px), minimal shadows, focus on content over decoration
+- **Copy**: Direct and professional, avoiding AI-sounding phrases, em dashes, and overly emotional language
+- **Mobile-first**: Responsive design principles maintained throughout

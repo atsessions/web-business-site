@@ -1,20 +1,35 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function CTASection() {
   return (
-    <section className="sm:py-16 pt-16 bg-white">
-      <div className="mx-auto flex flex-col items-center text-center px-4"> {/* <-- ADDED px-4 */}
-        <h3 className="text-2xl sm:text-3xl font-bold text-neutral-800 mb-6">
-          Ready to take your website to the next level?
-        </h3>
-        <Link
-          href="/contact"
-          className="inline-block rounded-xl bg-[#668B96] text-white font-semibold px-8 py-2 text-lg shadow-md hover:bg-[#6A4327] hover:text-white transition-colors duration-200"
+    <section className="py-18 bg-[#fafafa]">
+      <div className="mx-auto flex flex-col items-center text-center px-6">
+        <motion.h3
+          className="text-5xl md:text-6xl font-light text-black mb-12 tracking-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Let’s Talk
-        </Link>
+          Ready to get started?
+        </motion.h3>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
+          <Link
+            href="/contact"
+            className="group inline-block border-2 border-black text-black font-light px-12 py-5 text-lg hover:bg-black hover:text-white transition-all duration-300 relative overflow-hidden"
+          >
+            <span className="relative z-10">Get in touch</span>
+            <span className="absolute inset-0 bg-black transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

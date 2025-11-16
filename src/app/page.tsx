@@ -11,8 +11,8 @@ import SitePreviewMicrolink from "@/components/SitePreviewMicrolink";
 
 export default function Home() {
   return (
-    <main className="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
-      <section className="max-w-7xl mx-auto px-6 py-10 sm:py-20 pb-26 sm:pb-40 grid md:grid-cols-2 items-center gap-12">
+    <main className="bg-white min-h-screen">
+      <section className="max-w-7xl mx-auto px-6 py-20 sm:py-32 pb-32 sm:pb-48 grid md:grid-cols-2 items-center gap-12">
         {/* Image: top on mobile (order-1), right on desktop (md:order-2) */}
         <div className="order-1 md:order-2 w-full max-w-lg sm:max-w-xl md:max-w-2xl aspect-[5/4] relative">
           {/* This div will now act as the mask container and relative positioning context */}
@@ -41,74 +41,70 @@ export default function Home() {
 
         {/* Text: below image on mobile (order-2), left on desktop (md:order-1) */}
         <div className="order-2 md:order-1">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-neutral-800 mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-light text-black mb-8 tracking-tight leading-[1.1]">
             Website management <br /> for modern businesses.
           </h1>
-          <p className="text-lg text-gray-600 mb-8 max-w-lg">
-            Tap into the power of a stunning, effective website without the headache. Desert Web Development specializes in helping Page businesses connect with a global audience and achieve local success.
+          <p className="text-lg sm:text-xl text-[#404040] mb-12 max-w-xl font-light leading-relaxed">
+            Professional websites built with modern frameworks. Ongoing management and support for Page, Arizona businesses.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-5">
             <a
               href="/contact"
-              className="inline-block rounded-xl bg-[#668B96] text-white font-semibold px-8 py-3 text-lg shadow-md hover:bg-[#6A4327] hover:text-white transition-colors duration-200"
+              className="group inline-block border-2 border-black text-black font-light px-10 py-4 text-base hover:bg-black hover:text-white transition-all duration-300 relative overflow-hidden"
             >
-              Get Started
+              <span className="relative z-10">Get started</span>
+              <span className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </a>
             <a
               href="#features"
-              className="border border-gray-400 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-300 transition"
+              className="border-2 border-[#e5e5e5] text-[#737373] px-10 py-4 text-base font-light hover:border-black hover:text-black transition-all duration-300"
             >
-              Learn More
+              Learn more
             </a>
           </div>
         </div>
       </section>
 
-      {/* Gray Divider Bar */}
-      <div className="w-full h-20 bg-[#d9dbe1] relative z-10"></div>
-
-      {/* Tech Stack Scrolling Marquee */}
-      <section className="relative z-30 flex justify-center -mt-30">
-        <div className="w-full px-2 sm:px-6 md:px-12 lg:px-16">
-          <div className="bg-white rounded-3xl shadow-2xl py-8 px-4 sm:px-8 md:px-12 flex flex-col items-center w-full max-w-7xl border border-gray-200 mx-auto">
-            <span className="text-gray-500 uppercase text-sm font-semibold mb-4 tracking-widest">
-              Built With
-            </span>
-            <div
-              className="w-full h-14 overflow-hidden"
-              style={{
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-                maskImage:
-                  "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-              }}
-            >
-              <Marquee gradient={false} speed={40} pauseOnHover={true}>
-                {[
-                  "nextjs.svg",
-                  "react.svg",
-                  "wordpress.svg",
-                  "aws.svg",
-                  "google-analytics.svg",
-                  "apache.svg",
-                  "html.svg",
-                  "tailwindcss.svg",
-                  "github.svg",
-                  "figma.svg",
-                  "ubuntu.svg",
-                  "elementor.svg",
-                  "mysql.svg",
-                  "javascript.svg",
-                ].map((logo, i) => (
-                  <img
-                    key={i}
-                    src={`/${logo}`}
-                    alt={logo.replace(".svg", "")}
-                    className="h-10 w-auto opacity-80 grayscale hover:grayscale-0 transition mx-6"
-                  />
-                ))}
-              </Marquee>
-            </div>
+      {/* Tech Stack Section */}
+      <section className="bg-[#fafafa] py-20 border-t border-[#e5e5e5]">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-[#737373] text-xs font-light mb-12 text-center tracking-wider uppercase">
+            Built with
+          </p>
+          <div
+            className="w-full h-14 overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+            }}
+          >
+            <Marquee gradient={false} speed={40} pauseOnHover={true}>
+              {[
+                "nextjs.svg",
+                "react.svg",
+                "wordpress.svg",
+                "aws.svg",
+                "google-analytics.svg",
+                "apache.svg",
+                "html.svg",
+                "tailwindcss.svg",
+                "github.svg",
+                "figma.svg",
+                "ubuntu.svg",
+                "elementor.svg",
+                "mysql.svg",
+                "javascript.svg",
+              ].map((logo, i) => (
+                <img
+                  key={i}
+                  src={`/${logo}`}
+                  alt={logo.replace(".svg", "")}
+                  className="h-8 w-auto opacity-40 grayscale hover:opacity-60 transition mx-8"
+                />
+              ))}
+            </Marquee>
           </div>
         </div>
       </section>

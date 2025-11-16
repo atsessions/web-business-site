@@ -1,73 +1,72 @@
 "use client";
 
-import { FaSearch, FaRocket, FaShieldAlt, FaSyncAlt } from "react-icons/fa";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const features = [
   {
     title: "SEO Optimization",
-    icon: <FaSearch className="text-blue-500 group-hover:scale-110 group-hover:text-blue-700 transition-all duration-300" size={32} />,
     description:
-      "Boost your website’s visibility on Google and attract more customers with best-in-class SEO practices tailored for small businesses.",
+      "Increase visibility on search engines with technical SEO, clean code, and optimized content structure.",
   },
   {
     title: "Fast Performance",
-    icon: <FaRocket className="text-blue-500 group-hover:scale-110 group-hover:text-blue-700 transition-all duration-300" size={32} />,
     description:
-      "Lightning-fast load times and optimizations ensure visitors stay engaged. Built for speed on every device and connection.",
+      "Built with modern frameworks for lightning-fast load times across all devices and connections.",
   },
   {
-    title: "Reliable Security",
-    icon: <FaShieldAlt className="text-blue-500 group-hover:scale-110 group-hover:text-blue-700 transition-all duration-300" size={32} />,
+    title: "Secure & Reliable",
     description:
-      "Advanced security features keep your site safe, your data protected, and your visitors confident.",
+      "Regular updates, SSL certificates, and security best practices to protect your site and data.",
   },
   {
-    title: "Focus On Your Business, We'll Handle The Site",
-    icon: <FaSyncAlt className="text-blue-500 group-hover:scale-110 group-hover:text-blue-700 transition-all duration-300" size={32} />,
+    title: "Hands-Off Management",
     description:
-      "Spend your valuable time running your business. Our comprehensive management service handles all updates, content changes, and maintenance, so you don't have to.",
+      "Focus on your business. We handle updates, content changes, and ongoing maintenance.",
   },
 ];
 
 export default function FeaturesGrid() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section id="features" className="py-20 pt-20 sm:pt-40 bg-[#b6deee] -mt-10">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 mb-16 text-center">
-          A better way to start growing.
-        </h2>
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.15 } }
-          }}
+    <section id="features" className="py-10 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.h2
+          className="text-5xl md:text-6xl font-light text-black mb-18 text-center tracking-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {features.map((feature, i) => (
+          What you get
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-24">
+          {features.map((feature, index) => (
             <motion.div
-            key={feature.title}
-            className="group bg-white rounded-2xl shadow-lg p-7 flex flex-col items-center text-center hover:shadow-2xl transition-all duration-200 cursor-pointer hover:scale-105"
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
+              key={feature.title}
+              className="group relative"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             >
-              <div className="mb-4">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <div
+                className={`absolute -left-6 top-0 w-0.5 h-full bg-black transition-all duration-500 ${
+                  hoveredIndex === index ? 'opacity-100' : 'opacity-20'
+                }`}
+              />
+              <h3 className="text-2xl font-normal text-black mb-4 tracking-tight transition-transform duration-300 group-hover:translate-x-2">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-base">
+              <p className="text-[#737373] text-base leading-relaxed font-light">
                 {feature.description}
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

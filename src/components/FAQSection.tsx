@@ -1,71 +1,83 @@
 "use client";
 import { useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const faqs = [
   {
-    q: "What are the must-have features for our website to keep visitors excited and engaged?",
-    a: "Your website is your digital front door. From stunning visuals, to seamless booking options, we’ll help you pack your site with the right tools to turn visitors into loyal fans."
+    q: "What features are essential for an effective business website?",
+    a: "A good business website needs fast performance, mobile responsiveness, clear calls to action, SEO optimization, and analytics tracking. The specific features depend on your business goals and target audience."
   },
   {
-    q: "How can we make our website stand out in the bustling world of tourism?",
-    a: "We focus on creating a unique visual identity, compelling storytelling, and integrating features that highlight your strengths in tourism."
+    q: "How can my website stand out from competitors?",
+    a: "Focus on clear messaging, fast load times, professional design, and unique content that speaks directly to your audience. Good UX and technical performance matter more than flashy design."
   },
   {
-    q: "What's the best way to make our website a smooth experience on mobile devices?",
-    a: "Responsive design is a must. We ensure fast load times, thumb-friendly navigation, and mobile-first layouts."
+    q: "How do you ensure websites work well on mobile?",
+    a: "All sites are built mobile-first with responsive layouts, optimized images, and touch-friendly navigation. Performance testing ensures fast load times across devices."
   },
   {
-    q: "How can we use data and analytics to keep improving our website?",
-    a: "We set up analytics to track your visitors’ behaviors, and use these insights to guide ongoing improvements."
+    q: "How can I track and improve my website's performance?",
+    a: "Analytics tools like Google Analytics track visitor behavior, traffic sources, and conversion rates. Regular reviews of this data help identify areas for improvement."
   },
   {
-    q: "How often should we refresh our website’s content and design to keep it relevant?",
-    a: "A good rule of thumb is to update your content at least quarterly, and plan a design refresh every 2–3 years, or as your brand evolves."
+    q: "How often should I update my website?",
+    a: "Content should be updated regularly based on your business needs. Design refreshes typically happen every 2-3 years, or when technology and user expectations evolve."
   }
 ];
 
 export default function FAQSection() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 mb-4">
-          FAQs
-        </h2>
-        <div className="divide-y divide-neutral-200">
+    <section className="py-40 bg-white">
+      <div className="max-w-4xl mx-auto px-6">
+        <motion.h2
+          className="text-5xl md:text-6xl font-light text-black mb-24 tracking-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Common questions
+        </motion.h2>
+        <div className="space-y-8">
           {faqs.map((faq, idx) => {
             const isOpen = open === idx;
             return (
-              <div key={idx} className="py-4">
+              <motion.div
+                key={idx}
+                className="border-b border-[#e5e5e5] pb-8 group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: idx * 0.1, ease: "easeOut" }}
+              >
                 <button
                   onClick={() => setOpen(isOpen ? null : idx)}
-                  className="w-full flex justify-between items-center text-left group cursor-pointer focus:outline-none"
+                  className="w-full flex justify-between items-start text-left cursor-pointer focus:outline-none"
                   aria-expanded={isOpen}
                   aria-controls={`faq-${idx}`}
                 >
-                  <span className="text-lg sm:text-xl font-semibold text-neutral-900 group-hover:text-[#668B96] transition-colors cursor-pointer">
+                  <span className="text-xl font-normal text-black pr-8 transition-colors duration-300 group-hover:text-[#666666]">
                     {faq.q}
                   </span>
-                  <FiChevronDown
-                    size={24}
-                    className={`ml-3 transition-transform duration-300 group-hover:text-[#668B96] ${
-                      isOpen ? "rotate-180 text-[#668B96]" : "text-neutral-500"
-                    }`}
-                  />
+                  <span className={`flex-shrink-0 text-2xl font-light mt-0.5 transition-all duration-300 ${
+                    isOpen ? 'text-black rotate-180' : 'text-[#737373]'
+                  }`}>
+                    {isOpen ? "−" : "+"}
+                  </span>
                 </button>
                 <div
                   id={`faq-${idx}`}
                   className={`transition-all overflow-hidden duration-300 ease-in-out ${
-                    isOpen ? "max-h-[400px] mt-3 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-96 mt-6 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-neutral-700 text-base leading-relaxed">
+                  <p className="text-[#737373] text-base leading-relaxed font-light">
                     {faq.a}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

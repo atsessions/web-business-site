@@ -45,7 +45,7 @@ export default function RootLayout({
           {children}
         </div>
 
-        <section className="w-full bg-[#b6deee] min-h-10">
+        <section className="w-full bg-[#454545 min-h-0.5">
         </section>
         <SpeedInsights />
         <Footer />

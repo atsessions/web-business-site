@@ -1,6 +1,7 @@
 // src/components/HowItWorks.tsx
 "use client";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -31,111 +32,52 @@ const steps = [
   },
 ];
 
-const turquoise = "#668B96";
-const MOBILE_BREAKPOINT = 768; // Corresponds to Tailwind's 'md' breakpoint
-
 export default function HowItWorks() {
-  const [hasMounted, setHasMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true); // Ensures this runs client-side
-
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-
-    checkMobile(); // Initial check
-    window.addEventListener("resize", checkMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  if (!hasMounted) {
-    // Optional: Render nothing or a static version until client-side check is done
-    // This helps avoid hydration mismatches if initial server render differs from client
-    // For animations, it's often fine to just let them kick in after mount.
-    // Or, you could return a version of the component without motion.divs.
-    // For simplicity here, we'll let it render and animations will apply based on isMobile state.
-  }
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
   return (
-    <section className="relative py-16 md:py-24 pb-24 md:pb-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-2 sm:px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-neutral-800 mb-4">
-          How It Works
-        </h2>
-        <p className="text-center text-base sm:text-lg md:text-xl text-neutral-700 mb-16 sm:mb-20 max-w-2xl mx-auto">
-          A straightforward process from initial consultation to launch.
-        </p>
+    <section className="relative py-19 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.h2
+          className="text-5xl md:text-6xl font-light text-center text-black mb-18 tracking-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          How it works
+        </motion.h2>
 
-        <div className="relative">
-          {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#668B96]/30 to-transparent" style={{ top: '2rem' }} />
+        <div className="space-y-20">
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              className="flex gap-12 items-start group"
+              onMouseEnter={() => setHoveredStep(i)}
+              onMouseLeave={() => setHoveredStep(null)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+            >
+              {/* Number */}
+              <div className={`flex-shrink-0 w-16 h-16 flex items-center justify-center border-2 text-black text-lg font-light transition-all duration-300 ${
+                hoveredStep === i ? 'border-black bg-black text-white' : 'border-[#e5e5e5]'
+              }`}>
+                {i + 1}
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-y-12 gap-x-4 lg:gap-x-6 justify-items-center">
-            {steps.map((step, i) => {
-              const desktopAnimation = {
-                initial: { opacity: 0, y: 50 },
-                whileInView: { opacity: 1, y: 0 },
-                transition: {
-                  delay: i * 0.15,
-                  duration: 0.5,
-                  ease: "easeOut",
-                }
-              };
-
-              const mobileAnimation = {
-                initial: { opacity: 0, x: -20 },
-                whileInView: { opacity: 1, x: 0 },
-                transition: {
-                  delay: i * 0.1,
-                  duration: 0.4,
-                  ease: "easeOut",
-                }
-              };
-
-              const animationProps = isMobile ? mobileAnimation : desktopAnimation;
-
-              return (
-                <motion.div
-                  key={i}
-                  initial={animationProps.initial}
-                  whileInView={animationProps.whileInView}
-                  transition={animationProps.transition}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="w-full max-w-[18rem] md:max-w-none flex flex-col items-center relative group"
-                >
-                  {/* Number circle */}
-                  <div
-                    className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-all duration-300 mb-6"
-                    style={{
-                      background: `linear-gradient(135deg, ${turquoise} 0%, #7A9AA6 100%)`,
-                    }}
-                  >
-                    {i + 1}
-                  </div>
-
-                  {/* Card */}
-                  <div className="w-full bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group-hover:border-[#668B96]/30">
-                    <h3 className="font-bold text-neutral-900 text-lg mb-3 text-center">
-                      {step.title}
-                    </h3>
-                    <p className="text-neutral-600 text-sm leading-relaxed text-center">
-                      {step.description}
-                    </p>
-                  </div>
-
-                  {/* Arrow for mobile */}
-                  {i < steps.length - 1 && (
-                    <div className="md:hidden w-0.5 h-8 bg-gradient-to-b from-[#668B96]/50 to-transparent mt-6" />
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
+              {/* Content */}
+              <div className="flex-1 pt-3">
+                <h3 className="text-2xl font-normal text-black mb-4 tracking-tight transition-transform duration-300 group-hover:translate-x-2">
+                  {step.title}
+                </h3>
+                <p className="text-[#737373] text-base leading-relaxed font-light max-w-2xl">
+                  {step.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
