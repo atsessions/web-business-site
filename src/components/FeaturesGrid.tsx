@@ -30,10 +30,10 @@ export default function FeaturesGrid() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="features" className="py-10 bg-white">
+    <section id="features" className="py-32 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
-          className="text-5xl md:text-6xl font-light text-black mb-18 text-center tracking-tight"
+          className="text-5xl md:text-6xl font-light text-black mb-20 text-center tracking-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
