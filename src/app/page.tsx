@@ -66,7 +66,7 @@ export default function Home() {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="bg-[#fafafa] py-20 border-t border-[#e5e5e5]">
+      <section className="bg-[#fafafa] py-32 border-t border-[#e5e5e5]">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-[#737373] text-xs font-light mb-12 text-center tracking-wider uppercase">
             Built with

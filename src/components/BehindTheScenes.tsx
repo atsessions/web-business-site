@@ -76,7 +76,7 @@ export default function BehindTheScenes() {
   ];
 
   return (
-    <section className="w-full bg-[#fafafa] py-40 pb-10 overflow-x-hidden">
+    <section className="w-full bg-[#fafafa] py-32 overflow-x-hidden">
       <div className="max-w-6xl mx-auto w-full px-6 grid md:grid-cols-2 gap-24 items-start">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
