@@ -70,6 +70,15 @@
 
 ## Important Notes
 - **Contact Form**: Requires `RESEND_API_KEY` environment variable in Vercel
+  - Currently using Resend's test domain: `onboarding@resend.dev`
+  - To switch to custom domain (when ready):
+    1. Add and verify your domain in Resend dashboard (Domains section)
+    2. Add required DNS records to your domain provider
+    3. Update `/src/app/api/contact/route.ts` line 38:
+       ```typescript
+       from: 'Desert Web Development <contact@yourdomain.com>',
+       ```
+    4. Benefits: Professional sender address, better deliverability, brand consistency
 - **Portfolio Screenshots**: Use Puppeteer scripts to regenerate if needed
 - **Mobile Responsiveness**: Tested and optimized throughout
 - **No Microlink API**: Switched to self-hosted screenshots for better performance

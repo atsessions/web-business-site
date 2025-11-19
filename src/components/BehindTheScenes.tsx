@@ -115,11 +115,16 @@ export default function BehindTheScenes() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          <div className="bg-white w-full border border-[#e5e5e5] overflow-hidden hover:border-black/20 transition-colors duration-500">
-            <div className="flex items-center px-5 py-4 bg-[#fafafa] border-b border-[#e5e5e5]">
-              <span className="text-sm text-[#737373] font-mono">App.js</span>
+          <div className="bg-black w-full border border-black overflow-hidden shadow-xl">
+            <div className="flex items-center px-5 py-3 bg-[#2d2d2d] border-b border-[#1a1a1a]">
+              <div className="flex gap-2 mr-4">
+                <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+              </div>
+              <span className="text-sm text-[#999999] font-mono">App.js</span>
             </div>
-            <div className="hide-scrollbar px-8 py-8 font-mono text-sm text-left bg-white h-96 overflow-x-auto w-full">
+            <div className="hide-scrollbar px-8 py-8 font-mono text-sm text-left bg-black h-96 overflow-x-auto w-full">
               <Highlight
                 code={codeString}
                 language="javascript"
@@ -137,10 +142,10 @@ export default function BehindTheScenes() {
                   >
                     {tokens.map((line, i) => (
                       <div key={i} {...getLineProps({ line })} className="flex">
-                        <span className="inline-block w-8 text-right mr-4 text-[#999999] select-none flex-shrink-0 font-light">
+                        <span className="inline-block w-8 text-right mr-4 text-[#666666] select-none flex-shrink-0 font-light">
                           {i + 1}
                         </span>
-                        <div className="flex-1">
+                        <div className="flex-1 text-[#e8e8e8]">
                           {line.map((token, key) => (
                             <span key={key} {...getTokenProps({ token })} />
                           ))}
