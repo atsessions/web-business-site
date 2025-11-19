@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface SitePreviewMicrolinkProps {
   title: string;
   description: string;
   siteUrl: string;
   portfolioUrl?: string;
+  screenshotPath?: string;
 }
 
 export default function SitePreviewMicrolink({
@@ -15,13 +17,10 @@ export default function SitePreviewMicrolink({
   description,
   siteUrl,
   portfolioUrl = "/portfolio",
+  screenshotPath = "/portfolio-screenshots/red-heritage.png",
 }: SitePreviewMicrolinkProps) {
   const [imageLoading, setImageLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
-
-  const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(
-    siteUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url`;
 
   const handleImageLoad = () => {
     setImageLoading(false);
@@ -104,10 +103,11 @@ export default function SitePreviewMicrolink({
                   <p className="text-xs mt-1">{siteUrl.replace(/^https?:\/\//, "")}</p>
                 </div>
               )}
-              <img
-                src={screenshotUrl}
+              <Image
+                src={screenshotPath}
                 alt={`Screenshot of ${title}`}
-                className={`object-cover w-full h-full ${imageLoading || imageError ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+                fill
+                className={`object-cover ${imageLoading || imageError ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
                 draggable={false}
                 onLoad={handleImageLoad}
                 onError={handleImageError}
