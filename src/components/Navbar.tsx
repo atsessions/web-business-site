@@ -60,20 +60,20 @@ export default function Navbar() {
           className="md:hidden p-2 focus:outline-none transition-colors duration-300 hover:bg-[#fafafa]"
           aria-label="Toggle menu"
         >
-          <div className="w-6 h-5 flex flex-col justify-between">
+          <div className="w-6 h-5 relative flex items-center justify-center">
             <span
-              className={`w-full h-px bg-black transition-all duration-300 ${
-                menuOpen ? 'rotate-45 translate-y-2' : ''
+              className={`absolute w-full h-px bg-black transition-all duration-300 ${
+                menuOpen ? 'rotate-45' : '-translate-y-2'
               }`}
             />
             <span
-              className={`w-full h-px bg-black transition-all duration-300 ${
+              className={`absolute w-full h-px bg-black transition-all duration-300 ${
                 menuOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`w-full h-px bg-black transition-all duration-300 ${
-                menuOpen ? '-rotate-45 -translate-y-2' : ''
+              className={`absolute w-full h-px bg-black transition-all duration-300 ${
+                menuOpen ? '-rotate-45' : 'translate-y-2'
               }`}
             />
           </div>
