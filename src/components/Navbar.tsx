@@ -25,6 +25,9 @@ export default function Navbar() {
             alt="Desert Web Development Logo"
             className="h-8 w-8 transition-transform duration-300 group-hover:scale-110"
           />
+          <span className="text-lg sm:text-xl sm:hidden">
+            DesertWebAZ
+          </span>
           <span className="text-lg sm:text-xl hidden sm:block">
             Desert Web Development
           </span>
