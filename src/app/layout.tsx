@@ -18,10 +18,33 @@ const geistMono = Geist_Mono({
 
 // 2) Your site metadata (optional but recommended)
 export const metadata: Metadata = {
+  metadataBase: new URL('https://desertwebaz.com'),
   title: "Desert Web Development",
   description: "Professional web development and management services in Page, Arizona. Building and maintaining high-quality websites for businesses, government, and organizations.",
   icons: {
     icon: '/favicon.svg',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://desertwebaz.com',
+    siteName: 'Desert Web Development',
+    title: 'Desert Web Development',
+    description: 'Professional web development and management services in Page, Arizona. Building and maintaining high-quality websites for businesses, government, and organizations.',
+    images: [
+      {
+        url: '/hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Desert Web Development - Page, Arizona',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Desert Web Development',
+    description: 'Professional web development and management services in Page, Arizona. Building and maintaining high-quality websites for businesses, government, and organizations.',
+    images: ['/hero.jpg'],
   },
 }
 
