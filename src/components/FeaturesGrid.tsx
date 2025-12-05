@@ -30,7 +30,7 @@ export default function FeaturesGrid() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="features" className="py-16 md:py-24 bg-white">
+    <section id="features" className="py-16 md:py-24 bg-white scroll-mt-20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
           className="text-5xl md:text-6xl font-light text-black mb-20 text-center tracking-tight"
