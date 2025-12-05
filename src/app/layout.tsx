@@ -33,10 +33,11 @@ export const metadata: Metadata = {
     description: 'Professional web development and management services in Page, Arizona. Building and maintaining high-quality websites for businesses, government, and organizations.',
     images: [
       {
-        url: '/hero.jpg',
+        url: 'https://desertwebaz.com/hero.jpg',
         width: 1200,
         height: 630,
         alt: 'Desert Web Development - Page, Arizona',
+        type: 'image/jpeg',
       },
     ],
   },
