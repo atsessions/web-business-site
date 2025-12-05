@@ -33,7 +33,7 @@ export default function SitePreviewMicrolink({
   };
 
   return (
-    <section className="w-full flex flex-col items-center py-40 px-6 bg-white">
+    <section className="w-full flex flex-col items-center py-16 md:py-28 px-6 bg-white">
       <div className="flex flex-col md:flex-row items-center gap-20 w-full max-w-7xl mx-auto">
         {/* Text Content */}
         <motion.div
@@ -74,10 +74,8 @@ export default function SitePreviewMicrolink({
           <div
             className="
               border border-[#e5e5e5] bg-white overflow-hidden
-              w-full
+              w-full shadow-sm
               max-w-[750px]
-              h-[60vw] max-h-[500px]
-              md:w-[750px] md:h-[500px] md:max-w-[750px]
               hover:border-black/20
               transition-colors duration-500
               flex flex-col

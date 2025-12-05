@@ -76,7 +76,7 @@ export default function BehindTheScenes() {
   ];
 
   return (
-    <section className="w-full bg-[#fafafa] py-32 overflow-x-hidden">
+    <section className="w-full bg-[#fafafa] py-16 md:py-24 overflow-x-hidden">
       <div className="max-w-6xl mx-auto w-full px-6 grid md:grid-cols-2 gap-24 items-start">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -109,7 +109,7 @@ export default function BehindTheScenes() {
           </ul>
         </motion.div>
         <motion.div
-          className="flex items-center justify-center w-full"
+          className="flex items-center justify-center w-full min-w-0"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}

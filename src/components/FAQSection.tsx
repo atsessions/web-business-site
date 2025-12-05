@@ -20,7 +20,7 @@ const faqs = [
     a: "Analytics tools like Google Analytics track visitor behavior, traffic sources, and conversion rates. Regular reviews of this data help identify areas for improvement."
   },
   {
-    q: "How often should I update my website?",
+    q: "How often should I update the look and feel of my website?",
     a: "Content should be updated regularly based on your business needs. Design refreshes typically happen every 2-3 years, or when technology and user expectations evolve."
   }
 ];
@@ -29,7 +29,7 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-40 bg-white">
+    <section className="py-16 md:py-28 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         <motion.h2
           className="text-5xl md:text-6xl font-light text-black mb-24 tracking-tight"
@@ -61,17 +61,15 @@ export default function FAQSection() {
                   <span className="text-xl font-normal text-black pr-8 transition-colors duration-300 group-hover:text-[#666666]">
                     {faq.q}
                   </span>
-                  <span className={`flex-shrink-0 text-2xl font-light mt-0.5 transition-all duration-300 ${
-                    isOpen ? 'text-black rotate-180' : 'text-[#737373]'
-                  }`}>
+                  <span className={`flex-shrink-0 text-2xl font-light mt-0.5 transition-all duration-300 ${isOpen ? 'text-black rotate-180' : 'text-[#737373]'
+                    }`}>
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
                 <div
                   id={`faq-${idx}`}
-                  className={`transition-all overflow-hidden duration-300 ease-in-out ${
-                    isOpen ? "max-h-96 mt-6 opacity-100" : "max-h-0 opacity-0"
-                  }`}
+                  className={`transition-all overflow-hidden duration-300 ease-in-out ${isOpen ? "max-h-96 mt-6 opacity-100" : "max-h-0 opacity-0"
+                    }`}
                 >
                   <p className="text-[#737373] text-base leading-relaxed font-light">
                     {faq.a}

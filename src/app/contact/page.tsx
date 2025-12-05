@@ -116,6 +116,7 @@ export default function ContactPage() {
                 {[
                   "Custom Website Development",
                   "Website Maintenance & Updates",
+                  "Small Business Websites",
                   "Municipal & Government Websites",
                   "Performance Optimization",
                   "Web Consulting"

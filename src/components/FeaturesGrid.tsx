@@ -30,7 +30,7 @@ export default function FeaturesGrid() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="features" className="py-32 bg-white">
+    <section id="features" className="py-16 md:py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
           className="text-5xl md:text-6xl font-light text-black mb-20 text-center tracking-tight"
@@ -54,9 +54,8 @@ export default function FeaturesGrid() {
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             >
               <div
-                className={`absolute -left-6 top-0 w-0.5 h-full bg-black transition-all duration-500 ${
-                  hoveredIndex === index ? 'opacity-100' : 'opacity-20'
-                }`}
+                className={`absolute -left-6 top-0 w-0.5 h-full bg-black transition-all duration-500 ${hoveredIndex === index ? 'opacity-100' : 'opacity-20'
+                  }`}
               />
               <h3 className="text-2xl font-normal text-black mb-4 tracking-tight transition-transform duration-300 group-hover:translate-x-2">
                 {feature.title}

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CTASection() {
   return (
-    <section className="py-32 bg-[#fafafa]">
+    <section className="py-16 md:py-24 bg-[#fafafa]">
       <div className="mx-auto flex flex-col items-center text-center px-6">
         <motion.h3
           className="text-5xl md:text-6xl font-light text-black mb-12 tracking-tight"

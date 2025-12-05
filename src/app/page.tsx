@@ -12,7 +12,7 @@ import SitePreviewMicrolink from "@/components/SitePreviewMicrolink";
 export default function Home() {
   return (
     <main className="bg-white min-h-screen">
-      <section className="max-w-7xl mx-auto px-6 py-20 sm:py-32 pb-32 sm:pb-48 grid md:grid-cols-2 items-center gap-12">
+      <section className="max-w-7xl mx-auto px-6 py-12 sm:py-24 pb-16 sm:pb-32 grid md:grid-cols-2 items-center gap-12">
         {/* Image: top on mobile (order-1), right on desktop (md:order-2) */}
         <div className="order-1 md:order-2 w-full max-w-lg sm:max-w-xl md:max-w-2xl aspect-[5/4] relative">
           {/* This div will now act as the mask container and relative positioning context */}
@@ -45,7 +45,7 @@ export default function Home() {
             Website management <br /> for modern businesses.
           </h1>
           <p className="text-lg sm:text-xl text-[#404040] mb-12 max-w-xl font-light leading-relaxed">
-            Professional websites built with modern frameworks. Ongoing management and support for Page, Arizona businesses.
+            High-performance websites, fully managed for you. Local design and support that keeps your Page business running smoothly 24/7.
           </p>
           <div className="flex gap-5">
             <a
@@ -66,7 +66,7 @@ export default function Home() {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="bg-[#fafafa] py-32 border-t border-[#e5e5e5]">
+      <section className="bg-[#fafafa] py-16 md:py-24 border-t border-[#e5e5e5]">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-[#737373] text-xs font-light mb-12 text-center tracking-wider uppercase">
             Built with
